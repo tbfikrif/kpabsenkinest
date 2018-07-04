@@ -3,14 +3,20 @@ package id.kpunikom.absensihadir;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.vision.CameraSource;
@@ -20,12 +26,13 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
 
-public class TampilanScanner extends AppCompatActivity {
+public class TampilanScannerActivity extends AppCompatActivity {
 
     SurfaceView cameraPreview;
     TextView txtResult;
     BarcodeDetector barcodeDetector;
     CameraSource cameraSource;
+    Boolean codeScanned = false;
     final int RequestCameraPermissionID = 1001;
 
     @Override
@@ -59,7 +66,7 @@ public class TampilanScanner extends AppCompatActivity {
                 .build();
         cameraSource = new CameraSource
                 .Builder(this, barcodeDetector)
-                .setRequestedPreviewSize(640, 480)
+                .setRequestedPreviewSize(480, 680)
                 .build();
 
         //Add Event
@@ -68,7 +75,7 @@ public class TampilanScanner extends AppCompatActivity {
             public void surfaceCreated(SurfaceHolder holder) {
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     //Request permission
-                    ActivityCompat.requestPermissions(TampilanScanner.this, new String[]{Manifest.permission.CAMERA}, RequestCameraPermissionID);
+                    ActivityCompat.requestPermissions(TampilanScannerActivity.this, new String[]{Manifest.permission.CAMERA}, RequestCameraPermissionID);
                     return;
                 }
                 try {
@@ -98,14 +105,38 @@ public class TampilanScanner extends AppCompatActivity {
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> qrcodes = detections.getDetectedItems();
-                if (qrcodes.size() != 0) {
+                if (qrcodes.size() != 0 && !codeScanned) {
                     txtResult.post(new Runnable() {
                         @Override
                         public void run() {
                             //Create Vibrate
                             Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
-                            vibrator.vibrate(1000);
+                            vibrator.vibrate(50);
+
+                            //Create Sound
+                            Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                            MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), uri);
+                            mediaPlayer.start();
+
                             txtResult.setText(qrcodes.valueAt(0).displayValue);
+                            codeScanned = true;
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(TampilanScannerActivity.this);
+                            View view = getLayoutInflater().inflate(R.layout.popup_info_kehadiran, null);
+                            Button closeButton = view.findViewById(R.id.closeButton);
+
+                            builder.setView(view);
+                            final AlertDialog dialog = builder.create();
+                            dialog.show();
+
+                            closeButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    codeScanned = false;
+                                    txtResult.setText(R.string.result_text_default);
+                                    dialog.dismiss();
+                                }
+                            });
                         }
                     });
                 }
