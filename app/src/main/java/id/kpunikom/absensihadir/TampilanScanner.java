@@ -20,7 +20,7 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
 
-public class TampilanAwalActivity extends AppCompatActivity {
+public class TampilanScanner extends AppCompatActivity {
 
     SurfaceView cameraPreview;
     TextView txtResult;
@@ -49,7 +49,7 @@ public class TampilanAwalActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tampilan_awal);
+        setContentView(R.layout.activity_tampilan_scanner);
 
         cameraPreview = findViewById(R.id.cameraPreview);
         txtResult = findViewById(R.id.txtResult);
@@ -68,7 +68,7 @@ public class TampilanAwalActivity extends AppCompatActivity {
             public void surfaceCreated(SurfaceHolder holder) {
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     //Request permission
-                    ActivityCompat.requestPermissions(TampilanAwalActivity.this, new String[]{Manifest.permission.CAMERA}, RequestCameraPermissionID);
+                    ActivityCompat.requestPermissions(TampilanScanner.this, new String[]{Manifest.permission.CAMERA}, RequestCameraPermissionID);
                     return;
                 }
                 try {
