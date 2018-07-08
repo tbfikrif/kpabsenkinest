@@ -7,7 +7,7 @@
     tools:context=".TampilanAwalActivity">
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
-        android:layout_height="200dp"
+        android:layout_height="240dp"
         android:layout_width="match_parent"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         >
@@ -28,16 +28,69 @@
                 app:layout_collapseMode="pin"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-
                 >
+
             </android.support.v7.widget.Toolbar>
+
+
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            >
+
+            <at.markushi.ui.CircleButton
+                android:id="@+id/btnscanner"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/round_photo_camera_white_48"
+                app:cb_color="@color/colorAccent"
+                app:cb_pressedRingWidth="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btnscanner"
+                android:layout_centerHorizontal="true"
+                android:text="Scanner"
+                android:textColor="#3d3d3d"
+                tools:ignore="MissingPrefix"
+                android:id="@+id/txscanner"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PT. Kinest Kreatif Ideata"
+                android:layout_below="@+id/logo"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colorAccent"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                />
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/logokinest"
+                android:layout_below="@+id/txscanner"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="80dp"
+                android:id="@+id/logo"
+                />
+
+        </RelativeLayout>
+
 
     </android.support.v4.widget.NestedScrollView>
+
+
 </android.support.design.widget.CoordinatorLayout>

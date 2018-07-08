@@ -18,6 +18,11 @@ android {
         }
     }
 }
+//repocirclebutton
+repositories{
+    mavenCentral()
+    mavenLocal()
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -25,6 +30,8 @@ dependencies {
     // cardview
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:cardview-v7:27.1.1'
+    //circlebutton
+    implementation 'com.github.markushi:circlebutton:1.1'
 
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
