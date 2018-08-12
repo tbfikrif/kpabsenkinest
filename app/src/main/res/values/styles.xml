@@ -7,10 +7,4 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-    <style name="AppTheme.yellow">
-        <item name="colorPrimary">@color/yellow</item>
-        <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimary">@color/grey</item>
-    </style>
-
 </resources>
