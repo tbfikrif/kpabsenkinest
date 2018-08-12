@@ -1,7 +1,6 @@
 package id.kpunikom.absensihadir;
 
 import android.Manifest;
-import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -15,6 +14,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -54,11 +56,12 @@ public class TampilanScannerActivity extends AppCompatActivity {
 
     //Database
     DatabaseHelper myDB;
-
-    ListView listView;
-    ArrayList<String> theList;
-    ArrayAdapter<String> arrayAdapter;
     Cursor data;
+
+    //RecyclerView
+    RecyclerView recyclerView;
+    ArrayList<Item> itemList;
+    ItemArrayAdapter itemArrayAdapter;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -85,21 +88,22 @@ public class TampilanScannerActivity extends AppCompatActivity {
 
         cameraPreview = findViewById(R.id.cameraPreview);
         txtResult = findViewById(R.id.txtResult);
-        listView = findViewById(R.id.listView);
 
         myDB = new DatabaseHelper(this);
-        theList = new ArrayList<>();
         data = myDB.getListContents();
 
-        ShowData();
+        //RecyclerView
+        itemList = new ArrayList<>();
+        itemArrayAdapter = new ItemArrayAdapter(R.layout.list_item, itemList);
+        recyclerView = findViewById(R.id.itemList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        barcodeDetector = new BarcodeDetector.Builder(this)
-                .setBarcodeFormats(Barcode.QR_CODE)
-                .build();
-        cameraSource = new CameraSource
-                .Builder(this, barcodeDetector)
-                .setRequestedPreviewSize(480, 680)
-                .build();
+        //myDB.deleteRecord();
+        ShowDataRecycler();
+
+        barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
+        cameraSource = new CameraSource.Builder(this, barcodeDetector).setRequestedPreviewSize(480, 680).build();
 
         //Add Event
         cameraPreview.getHolder().addCallback(new SurfaceHolder.Callback() {
@@ -172,8 +176,6 @@ public class TampilanScannerActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
 
-                            UpdateData();
-
                             builder.setView(view);
                             final AlertDialog dialog = builder.create();
                             dialog.show();
@@ -183,7 +185,7 @@ public class TampilanScannerActivity extends AppCompatActivity {
                                 public void onClick(View v) {
                                     codeScanned = false;
                                     txtResult.setText(R.string.result_text_default);
-                                    AddData(nama);
+                                    AddData(nama, email);
                                     dialog.dismiss();
                                 }
                             });
@@ -194,39 +196,29 @@ public class TampilanScannerActivity extends AppCompatActivity {
         });
     }
 
-    public void AddData(String newEntry){
-        boolean insertData = myDB.addData(newEntry);
-
+    public void AddData(String nama, String email){
+        boolean insertData = myDB.addData(nama, email);
+        UpdateDataRecycler();
         if (insertData){
-            Toast.makeText(TampilanScannerActivity.this, newEntry + " Berhasil Login.", Toast.LENGTH_LONG).show();
+            Toast.makeText(TampilanScannerActivity.this, nama + " Berhasil Login.", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(TampilanScannerActivity.this, newEntry + " Gagal Login.", Toast.LENGTH_LONG).show();
+            Toast.makeText(TampilanScannerActivity.this, nama + " Gagal Login.", Toast.LENGTH_LONG).show();
         }
     }
 
-    public void ShowData(){
+    public void ShowDataRecycler(){
         if (data.getCount() == 0){
             Toast.makeText(TampilanScannerActivity.this, "Belum ada yang Login.", Toast.LENGTH_LONG).show();
         } else {
             while (data.moveToNext()){
-                theList.add(data.getString(1));
-                ListAdapter listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, theList);
-                arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, theList);
-                //listView.setAdapter(listAdapter);
-                listView.setAdapter(arrayAdapter);
+                itemList.add(new Item(data.getString(1), data.getString(2)));
+                recyclerView.setAdapter(itemArrayAdapter);
             }
         }
     }
 
-    public void UpdateData(){
-        while (data.moveToNext()){
-            theList.add(data.getString(1));
-            arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, theList);
-            arrayAdapter.notifyDataSetChanged();
-            listView.invalidateViews();
-            listView.refreshDrawableState();
-            listView.setAdapter(arrayAdapter);
-        }
+    public void UpdateDataRecycler(){
+        itemList.clear();
+        itemArrayAdapter.notifyDataSetChanged();
     }
-
 }

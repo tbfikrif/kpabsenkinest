@@ -6,158 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".TampilanScannerActivity">
 
-    <LinearLayout
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_height="350dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <android.support.design.widget.AppBarLayout
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        >
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/colapsingtoolbar"
+            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/darkblue"
+            app:layout_scrollFlags="exitUntilCollapsed|scroll"
+            app:expandedTitleMarginStart="48dp"
+            app:expandedTitleMarginEnd="64dp"
             >
-            <android.support.v7.widget.Toolbar
-
+            <SurfaceView
+                android:id="@+id/cameraPreview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                >
-               <ImageButton
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:background="@drawable/back"
-                   android:id="@+id/btn_back"
-                   />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Scanner"
-                    android:textSize="20sp"/>
-            </android.support.v7.widget.Toolbar>
-        </android.support.design.widget.AppBarLayout>
-        <SurfaceView
-            android:id="@+id/cameraPreview"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            />
-
-    </LinearLayout>
+                />
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
-    </android.support.v4.widget.NestedScrollView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="550dp"
-        android:orientation="vertical"
-        android:background="@drawable/bg_bottom_sheet"
-        app:layout_behavior="@string/bottom_sheet_behavior"
-        app:behavior_hideable="false"
-        app:behavior_peekHeight="300dp"
-        android:padding="6dp"
-        android:id="@+id/bottom_sheet"
+        app:layout_anchorGravity="top|center"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        >
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-            <ImageButton
-                android:layout_width="30dp"
-                android:layout_height="20dp"
-                android:background="@drawable/drag_icon"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/collapse_btn"
-                />
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
+
             <TextView
                 android:id="@+id/txtResult"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="20dp"
-                android:text="@string/result_text_default"
-                android:textSize="8sp"
-                android:textColor="@color/white"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@id/collapse_btn"
-                />
-            <TextView
-                android:id="@+id/txt_jumlahhadir"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Jumlah Hadir"
-                android:layout_marginTop="20dp"
-                android:textSize="12sp"
+                android:layout_marginTop="16dp"
+                android:text="@string/result_text_default"
+                android:textAlignment="center"
                 android:textColor="@color/white"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="35dp"
-                />
-            <TextView
-                android:id="@+id/txt_belumabsen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Belum Absen"
-                android:textSize="12sp"
-                android:textColor="@color/white"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="35dp"
-                android:layout_marginTop="20dp"
-                />
-            <TextView
-                android:id="@+id/txt_value_belumabsen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="16sp"
-                android:textColor="@color/yellow"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/txt_belumabsen"
-                android:layout_marginRight="70dp"
-                />
-            <TextView
-                android:id="@+id/txt_value_jumlahhadir"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="16sp"
-                android:textColor="@color/yellow"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/txt_jumlahhadir"
-                android:layout_marginLeft="70dp"
-                />
-            <TextView
-                android:id="@+id/txt_orang2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Orang"
-                android:textSize="12sp"
-                android:textColor="@color/white"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="60dp"
-                android:paddingBottom="12dp"
-                android:layout_below="@+id/txt_value_jumlahhadir"
-                />
-            <TextView
-                android:id="@+id/txt_orang1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Orang"
-                android:textSize="12sp"
-                android:textColor="@color/white"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="60dp"
-                android:paddingBottom="12dp"
-                android:layout_below="@+id/txt_value_belumabsen"
-                />
-        </RelativeLayout>
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/listView"
-            app:layout_behavior="@string/bottom_sheet_behavior"
-            android:background="@drawable/bg_data_list"
-            android:padding="2dp"
+                android:textSize="20sp" />
 
-            >
-        </ListView>
-    </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/itemList"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:layout_marginTop="50dp"/>
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>
