@@ -11,6 +11,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String TABLE_NAME = "mylist_data";
     public static final String COL1 = "ID";
     public static final String COL2 = "ITEM1";
+    public static final String COL3 = "ITEM2";
 
 
     public DatabaseHelper(Context context) {
@@ -19,8 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                " ITEM1 TEXT)";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " + " ITEM1 TEXT,"  + " ITEM2 TEXT)";
         db.execSQL(createTable);
     }
 
@@ -30,10 +30,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         onCreate(db);
     }
 
-    public boolean addData(String item1) {
+    public boolean addData(String item1, String item2) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, item1);
+        contentValues.put(COL3, item2);
 
         long result = db.insert(TABLE_NAME, null, contentValues);
 
