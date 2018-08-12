@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import at.markushi.ui.CircleButton;
 
 public class TampilanAwalActivity extends AppCompatActivity {
 
@@ -15,8 +14,7 @@ public class TampilanAwalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tampilan_awal);
-
-        CircleButton btnScanner = findViewById(R.id.btnscanner);
+         Button btnScanner = findViewById(R.id.btn_scanner);
          btnScanner.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {

@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">Sistem Absensi PT. Kinest Kreatif Ideata</string>
     <string name="result_text_default">Please focus camera to QR Code</string>
+    <string name="title">Sistem Absensi</string>
+    <string name="kinest">KINEST</string>
+    <string name="kreatif">KREATIF</string>
+    <string name="ideata">IDEATA</string>
+    <string name="scanner">Scanner</string>
+    <string name="pengaturan">Pengaturan</string>
+    <string name="info">"Hubungi Kami
+Butuh bantuan atau punya pertanyaan? Silahkan hubungi kami melalui
+Email : info@kakatu.id
+Whatsapp : 0812 4997 1300
+Telepon Kantor : (022) 82000 457
+Alamat Kantor : Jl. Sukasari 1 No. 04, Sukawarna, Sukajadi, Kota Bandung, Jawa Barat 40164 Indonesia
+Waktu Operasional : Senin - Jum’at, Pukul 09.00-17.00 WIB"</string>
 </resources>
