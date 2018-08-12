@@ -16,7 +16,7 @@ public class TampilanAwalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tampilan_awal);
 
-        CircleButton btnScanner = findViewById(R.id.btnscanner);
+        CircleButton btnScanner = findViewById(R.id.btn_scanner);
          btnScanner.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {

@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Sistem Absensi PT. Kinest Kreatif Ideata</string>
     <string name="result_text_default">Please focus camera to QR Code</string>
+    <string name="title">Sistem Absensi</string>
+    <string name="kinest">KINEST</string>
+    <string name="kreatif">KREATIF</string>
+    <string name="ideata">IDEATA</string>
+    <string name="scanner">Scanner</string>
+    <string name="pengaturan">Pengaturan</string>
+    <string name="info">info</string>
 </resources>

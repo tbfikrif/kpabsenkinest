@@ -9,6 +9,8 @@
     </style>
     <style name="AppTheme.yellow">
         <item name="colorPrimary">@color/yellow</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimary">@color/grey</item>
     </style>
 
 </resources>
