@@ -18,18 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                >
-               <ImageButton
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:background="@drawable/back"
-                   android:id="@+id/btn_back"
-                   />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Scanner"
-                    android:textSize="20sp"/>
+                app:title="Scanner">
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 
@@ -184,7 +173,7 @@
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="550dp"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="@drawable/bg_bottom_sheet"
             app:layout_behavior="@string/bottom_sheet_behavior"
@@ -207,7 +196,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="20dp"
                     android:text="Date()"
-                    android:textSize="8sp"
+                    android:textSize="12sp"
                     android:textColor="@color/white"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@id/collapse_btn"
@@ -281,7 +270,6 @@
                     android:layout_below="@+id/txt_value_belumabsen"
                     />
             </RelativeLayout>
-
             <FrameLayout
                 android:id="@+id/main_frame"
                 android:layout_width="match_parent"

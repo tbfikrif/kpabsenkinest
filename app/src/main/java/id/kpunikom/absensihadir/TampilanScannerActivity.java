@@ -36,6 +36,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -46,12 +47,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class TampilanScannerActivity extends AppCompatActivity {
 
     SurfaceView cameraPreview;
     TextView txtResult;
+    TextView txtDate;
     BarcodeDetector barcodeDetector;
     CameraSource cameraSource;
     Boolean codeScanned = false;
@@ -92,7 +98,6 @@ public class TampilanScannerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tampilan_scanner);
-
         //START NAVIGATIONBOTTOM
         mMainFrame = (FrameLayout) findViewById(R.id.main_frame);
         mMainNav = (BottomNavigationView) findViewById(R.id.main_nav);
@@ -118,6 +123,9 @@ public class TampilanScannerActivity extends AppCompatActivity {
              }
          });
         //END NAVIGATIONBOTTOM
+        txtDate = findViewById(R.id.txtDate);
+        String getDate = getCurrentDate();
+        txtDate.setText(getDate);
 
         cameraPreview = findViewById(R.id.cameraPreview);
         txtResult = findViewById(R.id.txtResult);
@@ -221,7 +229,18 @@ public class TampilanScannerActivity extends AppCompatActivity {
             }
         });
     }
+    //GETCURENTDATE
 
+    public String getCurrentDate() {
+        final Calendar c = Calendar.getInstance();
+        int year,month,day;
+        year = c.get(Calendar.YEAR);
+        month = c.get(Calendar.MONTH);
+        day = c.get(Calendar.DATE);
+        return day + "/" + (month+1) + "/" + year;
+    }
+
+    //FRAGMENT
     private void setFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
