@@ -21,6 +21,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -63,17 +64,11 @@ public class TampilanScannerActivity extends AppCompatActivity {
     DatabaseHelper myDB;
     Cursor data;
 
-    //RecyclerView
-    RecyclerView recyclerView;
-    ArrayList<Item> itemList;
-    ItemArrayAdapter itemArrayAdapter;
-
     //LAYOUT
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
     private HadirFragment hadirFragment;
     private BelumHadirFragment belumHadirFragment;
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -105,6 +100,9 @@ public class TampilanScannerActivity extends AppCompatActivity {
         hadirFragment = new HadirFragment();
         belumHadirFragment = new BelumHadirFragment();
 
+        //default
+        setFragment(hadirFragment);
+
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
              @Override
              public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -127,15 +125,8 @@ public class TampilanScannerActivity extends AppCompatActivity {
         myDB = new DatabaseHelper(this);
         data = myDB.getListContents();
 
-        //RecyclerView
-        itemList = new ArrayList<>();
-        itemArrayAdapter = new ItemArrayAdapter(R.layout.list_item, itemList);
-        recyclerView = findViewById(R.id.itemList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         //myDB.deleteRecord();
-        ShowDataRecycler();
 
         barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
         cameraSource = new CameraSource.Builder(this, barcodeDetector).setRequestedPreviewSize(480, 680).build();
@@ -239,7 +230,7 @@ public class TampilanScannerActivity extends AppCompatActivity {
 
     public void AddData(String nama, String email){
         boolean insertData = myDB.addData(nama, email);
-        UpdateDataRecycler();
+
         if (insertData){
             Toast.makeText(TampilanScannerActivity.this, nama + " Berhasil Login.", Toast.LENGTH_LONG).show();
         } else {
@@ -247,19 +238,5 @@ public class TampilanScannerActivity extends AppCompatActivity {
         }
     }
 
-    public void ShowDataRecycler(){
-        if (data.getCount() == 0){
-            Toast.makeText(TampilanScannerActivity.this, "Belum ada yang Login.", Toast.LENGTH_LONG).show();
-        } else {
-            while (data.moveToNext()){
-                itemList.add(new Item(data.getString(1), data.getString(2)));
-                recyclerView.setAdapter(itemArrayAdapter);
-            }
-        }
-    }
 
-    public void UpdateDataRecycler(){
-        itemList.clear();
-        itemArrayAdapter.notifyDataSetChanged();
-    }
 }
