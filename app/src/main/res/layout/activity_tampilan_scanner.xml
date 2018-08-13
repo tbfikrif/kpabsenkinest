@@ -40,16 +40,17 @@
             />
     </LinearLayout>
 
+
+
     <TextView
         android:id="@+id/txtResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
         android:text="@string/result_text_default"
         android:textSize="8sp"
         android:textColor="@color/white"
-        android:layout_gravity="center"
-        android:layout_marginBottom="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
         />
 
     <android.support.design.widget.BottomNavigationView
@@ -72,116 +73,227 @@
         android:layout_width="match_parent"
         android:layout_height="550dp"
         android:orientation="vertical"
-        android:background="@drawable/bg_bottom_sheet"
         app:layout_behavior="@string/bottom_sheet_behavior"
         app:behavior_hideable="false"
-        app:behavior_peekHeight="300dp"
-        android:padding="6dp"
-        android:id="@+id/bottom_sheet"
-
-        >
-        <RelativeLayout
-            android:layout_width="match_parent"
+        app:behavior_peekHeight="350dp"
+        android:id="@+id/bottom_sheet">
+        <TextView
+            android:id="@+id/txtKeterangan"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
-            <ImageButton
+            android:text="Keterangan : "
+            android:textSize="8sp"
+            android:textColor="@color/white"
+            android:padding="2dp"
+            android:layout_gravity="center_horizontal"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp">
+            <TextView
+                android:id="@+id/txtHadir"
                 android:layout_width="30dp"
-                android:layout_height="20dp"
-                android:background="@drawable/drag_icon"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/collapse_btn"
-                />
-            <TextView
-                android:id="@+id/txtDate"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="20dp"
-                android:text="Date()"
+                android:text="Hadir"
                 android:textSize="8sp"
+                android:textAlignment="center"
+                android:background="@drawable/bg_hadir"
                 android:textColor="@color/white"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/collapse_btn"
+                android:padding="2dp"
                 />
             <TextView
-                android:id="@+id/txt_jumlahhadir"
+                android:id="@+id/txtTugaskantor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Jumlah Hadir"
-                android:layout_marginTop="20dp"
-                android:textSize="12sp"
+                android:text="Tugas Kantor"
+                android:textSize="8sp"
+                android:background="@drawable/bg_tugaskantor"
                 android:textColor="@color/white"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="35dp"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/txtHadir"
+                android:layout_alignBaseline="@+id/txtHadir"
+                android:padding="2dp"
+                android:textAlignment="center"
                 />
             <TextView
-                android:id="@+id/txt_belumabsen"
-                android:layout_width="wrap_content"
+                android:id="@+id/txtSakit"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:text="Belum Absen"
-                android:textSize="12sp"
+                android:textAlignment="center"
+                android:text="Sakit"
+                android:textSize="8sp"
+                android:background="@drawable/bg_sakit"
                 android:textColor="@color/white"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="35dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/txtTugaskantor"
+                android:padding="2dp"
                 />
             <TextView
-                android:id="@+id/txt_value_belumabsen"
-                android:layout_width="wrap_content"
+                android:id="@+id/txtIzin"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="16sp"
-                android:textColor="@color/yellow"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/txt_belumabsen"
-                android:layout_marginRight="70dp"
-                />
-            <TextView
-                android:id="@+id/txt_value_jumlahhadir"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="16sp"
-                android:textColor="@color/yellow"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/txt_jumlahhadir"
-                android:layout_marginLeft="70dp"
-                />
-            <TextView
-                android:id="@+id/txt_orang2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Orang"
-                android:textSize="12sp"
+                android:textAlignment="center"
+                android:text="Izin"
+                android:textSize="8sp"
+                android:background="@drawable/bg_izin"
                 android:textColor="@color/white"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="60dp"
-                android:paddingBottom="12dp"
-                android:layout_below="@+id/txt_value_jumlahhadir"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/txtSakit"
+                android:padding="2dp"
                 />
             <TextView
-                android:id="@+id/txt_orang1"
+                android:id="@+id/txtCuti"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Cuti"
+                android:textSize="8sp"
+                android:background="@drawable/bg_cuti"
+                android:textColor="@color/white"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/txtIzin"
+                android:padding="2dp"
+                />
+            <TextView
+                android:id="@+id/txtKerjaremote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Orang"
-                android:textSize="12sp"
+                android:textAlignment="center"
+                android:text="Kerja Remote"
+                android:textSize="8sp"
+                android:background="@drawable/bg_kerjaremote"
+                android:textColor="@color/darkblue"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/txtCuti"
+                android:padding="2dp"
+                />
+            <TextView
+                android:id="@+id/txtAlpha"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Alpha"
+                android:textSize="8sp"
+                android:background="@drawable/bg_alpha"
                 android:textColor="@color/white"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="60dp"
-                android:paddingBottom="12dp"
-                android:layout_below="@+id/txt_value_belumabsen"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/txtKerjaremote"
+                android:padding="2dp"
                 />
         </RelativeLayout>
-
-        <FrameLayout
-            android:id="@+id/main_frame"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/itemList"
+            android:layout_height="550dp"
+            android:orientation="vertical"
+            android:background="@drawable/bg_bottom_sheet"
+            app:layout_behavior="@string/bottom_sheet_behavior"
+            android:padding="6dp"
+            >
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="2dp">
-            </android.support.v7.widget.RecyclerView>
-        </FrameLayout>
+                android:layout_height="wrap_content"
+                >
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/drag_icon"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/collapse_btn"
+                    />
+                <TextView
+                    android:id="@+id/txtDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:text="Date()"
+                    android:textSize="8sp"
+                    android:textColor="@color/white"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/collapse_btn"
+                    />
+                <TextView
+                    android:id="@+id/txt_jumlahhadir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jumlah Hadir"
+                    android:layout_marginTop="20dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/white"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="35dp"
+                    />
+                <TextView
+                    android:id="@+id/txt_belumabsen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Belum Absen"
+                    android:textSize="12sp"
+                    android:textColor="@color/white"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginTop="20dp"
+                    />
+                <TextView
+                    android:id="@+id/txt_value_belumabsen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="16sp"
+                    android:textColor="@color/yellow"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/txt_belumabsen"
+                    android:layout_marginRight="70dp"
+                    />
+                <TextView
+                    android:id="@+id/txt_value_jumlahhadir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="16sp"
+                    android:textColor="@color/yellow"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/txt_jumlahhadir"
+                    android:layout_marginLeft="70dp"
+                    />
+                <TextView
+                    android:id="@+id/txt_orang2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Orang"
+                    android:textSize="12sp"
+                    android:textColor="@color/white"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="60dp"
+                    android:paddingBottom="12dp"
+                    android:layout_below="@+id/txt_value_jumlahhadir"
+                    />
+                <TextView
+                    android:id="@+id/txt_orang1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Orang"
+                    android:textSize="12sp"
+                    android:textColor="@color/white"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="60dp"
+                    android:paddingBottom="12dp"
+                    android:layout_below="@+id/txt_value_belumabsen"
+                    />
+            </RelativeLayout>
+
+            <FrameLayout
+                android:id="@+id/main_frame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/itemList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="2dp">
+                </android.support.v7.widget.RecyclerView>
+            </FrameLayout>
+        </LinearLayout>
     </LinearLayout>
+
 </android.support.design.widget.CoordinatorLayout>
