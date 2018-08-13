@@ -14,4 +14,9 @@ Whatsapp : 0812 4997 1300
 Telepon Kantor : (022) 82000 457
 Alamat Kantor : Jl. Sukasari 1 No. 04, Sukawarna, Sukajadi, Kota Bandung, Jawa Barat 40164 Indonesia
 Waktu Operasional : Senin - Jum’at, Pukul 09.00-17.00 WIB"</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nav_hadir">Hadir</string>
+    <string name="nav_belum_hadir">Belum Hadir</string>
 </resources>

@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TampilanScannerActivity">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,7 +15,6 @@
             android:background="@color/darkblue"
             >
             <android.support.v7.widget.Toolbar
-
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -39,12 +37,22 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             />
-
     </LinearLayout>
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/main_nav"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/bg_navigation"
+        android:layout_gravity="bottom"
+        app:menu="@menu/navigation_item"
+        app:itemIconTint="@drawable/nav_item_color"
+        app:itemTextColor="@drawable/nav_item_color">
+    </android.support.design.widget.BottomNavigationView>
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+
     </android.support.v4.widget.NestedScrollView>
     <LinearLayout
         android:layout_width="match_parent"
@@ -149,10 +157,17 @@
                 android:layout_below="@+id/txt_value_belumabsen"
                 />
         </RelativeLayout>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/itemList"
+
+        <FrameLayout
+            android:id="@+id/main_frame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="2dp"/>
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/itemList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="2dp">
+            </android.support.v7.widget.RecyclerView>
+        </FrameLayout>
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
