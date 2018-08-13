@@ -12,6 +12,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
+import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -68,6 +71,9 @@ public class TampilanScannerActivity extends AppCompatActivity {
     //LAYOUT
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
+    private HadirFragment hadirFragment;
+    private BelumHadirFragment belumHadirFragment;
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -91,6 +97,29 @@ public class TampilanScannerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tampilan_scanner);
+
+        //START NAVIGATIONBOTTOM
+        mMainFrame = (FrameLayout) findViewById(R.id.main_frame);
+        mMainNav = (BottomNavigationView) findViewById(R.id.main_nav);
+
+        hadirFragment = new HadirFragment();
+        belumHadirFragment = new BelumHadirFragment();
+
+        mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+             @Override
+             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                 switch (item.getItemId()){
+                     case  R.id.nav_hadir :
+                         setFragment(hadirFragment);
+                         return true;
+                     case  R.id.nav_belum_hadir :
+                         setFragment(belumHadirFragment);
+                         return true;
+                 }
+                 return false;
+             }
+         });
+        //END NAVIGATIONBOTTOM
 
         cameraPreview = findViewById(R.id.cameraPreview);
         txtResult = findViewById(R.id.txtResult);
@@ -200,6 +229,12 @@ public class TampilanScannerActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void setFragment(Fragment fragment){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.main_frame, fragment);
+        fragmentTransaction.commit();
     }
 
     public void AddData(String nama, String email){

@@ -32,12 +32,26 @@
                     android:textSize="20sp"/>
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
+
         <SurfaceView
             android:id="@+id/cameraPreview"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:text="@string/result_text_default"
+        android:textSize="8sp"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:layout_marginBottom="100dp"
+        />
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/main_nav"
         android:layout_width="match_parent"
@@ -78,11 +92,11 @@
                 android:id="@+id/collapse_btn"
                 />
             <TextView
-                android:id="@+id/txtResult"
+                android:id="@+id/txtDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="20dp"
-                android:text="@string/result_text_default"
+                android:text="Date()"
                 android:textSize="8sp"
                 android:textColor="@color/white"
                 android:layout_centerHorizontal="true"

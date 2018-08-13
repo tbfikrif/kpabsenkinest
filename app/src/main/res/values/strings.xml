@@ -17,6 +17,6 @@ Waktu Operasional : Senin - Jum’at, Pukul 09.00-17.00 WIB"</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="nav_hadir">Hadir</string>
-    <string name="nav_belum_hadir">Belum Hadir</string>
+    <string name="nav_hadir">Sudah Absen</string>
+    <string name="nav_belum_hadir">Belum Absen</string>
 </resources>
