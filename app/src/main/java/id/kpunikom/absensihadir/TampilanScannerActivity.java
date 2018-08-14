@@ -2,6 +2,7 @@ package id.kpunikom.absensihadir;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.media.MediaPlayer;
@@ -37,8 +38,11 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import id.kpunikom.absensihadir.control.ApiClient;
 import id.kpunikom.absensihadir.control.ApiInterface;
@@ -233,6 +237,7 @@ public class TampilanScannerActivity extends AppCompatActivity {
                                     codeScanned = false;
                                     txtResult.setText(R.string.result_text_default);
                                     //AddData(id_anggota, nama);
+                                    ShareWA();
                                     dialog.dismiss();
                                 }
                             });
@@ -270,5 +275,17 @@ public class TampilanScannerActivity extends AppCompatActivity {
         }
     }
 
-
+    public void ShareWA(){
+        DateFormat df = new SimpleDateFormat("HH:mm");
+        String currentTime = df.format(Calendar.getInstance().getTime());
+        Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
+        whatsappIntent.setType("text/plain");
+        whatsappIntent.setPackage("com.whatsapp");
+        whatsappIntent.putExtra(Intent.EXTRA_TEXT, "Hadir\n---\nSaya, "+nama+" sudah hadir dikantor pada hari ini pukul "+currentTime);
+        try {
+            startActivity(whatsappIntent);
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(TampilanScannerActivity.this, "Whatsapp have not been installed.", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
