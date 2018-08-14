@@ -55,7 +55,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:layout_alignParentRight="true"
-                android:text="Jam Masuk"
+                android:text="@string/jam_masuk"
+                android:layout_marginEnd="6dp"
                 android:gravity="start"/>
             <TextView
                 android:id="@+id/jam_masuk"
@@ -67,6 +68,7 @@
                 android:textColor="@color/white"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/label_jam"
+                android:layout_marginEnd="6dp"
                 android:gravity="start"/>
         </RelativeLayout>
         </LinearLayout>

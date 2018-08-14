@@ -1,7 +1,6 @@
 package id.kpunikom.absensihadir;
 
 
-import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +13,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import id.kpunikom.absensihadir.control.ApiClient;
+import id.kpunikom.absensihadir.control.ApiInterface;
+import id.kpunikom.absensihadir.model.Item;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -29,6 +35,9 @@ public class HadirFragment extends Fragment {
     //Database
     DatabaseHelper myDB;
     Cursor data;
+
+    //Retrofit
+    private ApiInterface apiInterface;
 
     public HadirFragment() {
         // Required empty public constructor
@@ -50,7 +59,25 @@ public class HadirFragment extends Fragment {
         myDB = new DatabaseHelper(getContext());
         data = myDB.getListContents();
 
-        ShowDataRecycler();
+        //API
+        apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+        Call<ArrayList<Item>> call = apiInterface.getListSudahAbsen();
+
+        call.enqueue(new Callback<ArrayList<Item>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Item>> call, Response<ArrayList<Item>> response) {
+                itemList = response.body();
+                itemArrayAdapter = new ItemArrayAdapter(R.layout.list_item, itemList);
+                recyclerView.setAdapter(itemArrayAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Item>> call, Throwable t) {
+
+            }
+        });
+
+        //ShowDataRecycler();
 
         return view;
     }
@@ -60,7 +87,7 @@ public class HadirFragment extends Fragment {
             Toast.makeText(getContext(), "Belum ada yang Login.", Toast.LENGTH_SHORT).show();
         } else {
             while (data.moveToNext()){
-                itemList.add(new Item(data.getString(1), data.getString(2)));
+                itemList.add(new Item(data.getString(1), data.getString(2), data.getString(3)));
                 recyclerView.setAdapter(itemArrayAdapter);
             }
         }
