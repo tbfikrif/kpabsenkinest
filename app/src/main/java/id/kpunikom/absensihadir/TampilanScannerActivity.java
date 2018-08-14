@@ -10,33 +10,21 @@ import android.net.Uri;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -46,12 +34,18 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
+
+import id.kpunikom.absensihadir.control.ApiClient;
+import id.kpunikom.absensihadir.control.ApiInterface;
+import id.kpunikom.absensihadir.model.Item;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TampilanScannerActivity extends AppCompatActivity {
 
@@ -64,11 +58,14 @@ public class TampilanScannerActivity extends AppCompatActivity {
     final int RequestCameraPermissionID = 1001;
 
     //JSON
-    String nama, email;
+    String id_anggota, nama;
 
     //Database
     DatabaseHelper myDB;
     Cursor data;
+
+    //Retrofit
+    private ApiInterface apiInterface;
 
     //LAYOUT
     private BottomNavigationView mMainNav;
@@ -201,10 +198,26 @@ public class TampilanScannerActivity extends AppCompatActivity {
                             //Get JSON
                             try {
                                 JSONObject object =new JSONObject(qrcodes.valueAt(0).displayValue);
+                                id_anggota = object.getString("id_anggota");
                                 nama = object.getString("nama");
-                                email = object.getString("email");
 
                                 textViewResult.setText(nama);
+
+                                //Post API
+                                apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+                                Call<ArrayList<Item>> call = apiInterface.postHadir(id_anggota);
+
+                                call.enqueue(new Callback<ArrayList<Item>>() {
+                                    @Override
+                                    public void onResponse(Call<ArrayList<Item>> call, Response<ArrayList<Item>> response) {
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<ArrayList<Item>> call, Throwable t) {
+
+                                    }
+                                });
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -219,7 +232,7 @@ public class TampilanScannerActivity extends AppCompatActivity {
                                 public void onClick(View v) {
                                     codeScanned = false;
                                     txtResult.setText(R.string.result_text_default);
-                                    AddData(nama, email);
+                                    //AddData(id_anggota, nama);
                                     dialog.dismiss();
                                 }
                             });
@@ -251,9 +264,9 @@ public class TampilanScannerActivity extends AppCompatActivity {
         boolean insertData = myDB.addData(nama, email);
 
         if (insertData){
-            Toast.makeText(TampilanScannerActivity.this, nama + " Berhasil Login.", Toast.LENGTH_LONG).show();
+            //Toast.makeText(TampilanScannerActivity.this, nama + " Berhasil Login.", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(TampilanScannerActivity.this, nama + " Gagal Login.", Toast.LENGTH_LONG).show();
+            //Toast.makeText(TampilanScannerActivity.this, nama + " Gagal Login.", Toast.LENGTH_LONG).show();
         }
     }
 
