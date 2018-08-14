@@ -3,19 +3,20 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="6dp"
-    android:layout_marginBottom="6dp">
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bg_list"
             android:orientation="horizontal"
-            android:padding="3dp"
+            android:padding="5dp"
             >
             <TextView
                 android:id="@+id/txNoUrut"
-                android:layout_width="30dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_hadir"
                 android:textColor="@color/white"
@@ -23,8 +24,8 @@
                 android:textSize="20sp"
                 android:text="20"/>
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:src="@mipmap/ic_launcher"/>
             <LinearLayout
                 android:layout_width="wrap_content"

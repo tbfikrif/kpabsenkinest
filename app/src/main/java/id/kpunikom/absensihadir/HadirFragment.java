@@ -84,7 +84,7 @@ public class HadirFragment extends Fragment {
 
     public void ShowDataRecycler(){
         if (data.getCount() == 0){
-            Toast.makeText(getContext(), "Belum ada yang Login.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Belum ada yang Absen.", Toast.LENGTH_SHORT).show();
         } else {
             while (data.moveToNext()){
                 itemList.add(new Item(data.getString(1), data.getString(2), data.getString(3)));
