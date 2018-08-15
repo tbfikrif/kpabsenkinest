@@ -82,6 +82,29 @@ public class HadirFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        //API
+        apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+        Call<ArrayList<Item>> call = apiInterface.getListSudahAbsen();
+
+        call.enqueue(new Callback<ArrayList<Item>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Item>> call, Response<ArrayList<Item>> response) {
+                itemList = response.body();
+                itemArrayAdapter = new ItemArrayAdapter(R.layout.list_item, itemList);
+                recyclerView.setAdapter(itemArrayAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Item>> call, Throwable t) {
+
+            }
+        });
+    }
+
     public void ShowDataRecycler(){
         if (data.getCount() == 0){
             Toast.makeText(getContext(), "Belum ada yang Absen.", Toast.LENGTH_SHORT).show();

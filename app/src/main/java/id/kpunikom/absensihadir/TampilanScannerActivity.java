@@ -192,7 +192,7 @@ public class TampilanScannerActivity extends AppCompatActivity {
                             MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), uri);
                             mediaPlayer.start();
 
-                            txtResult.setText(qrcodes.valueAt(0).displayValue);
+                            //txtResult.setText(qrcodes.valueAt(0).displayValue);
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(TampilanScannerActivity.this);
                             View view = getLayoutInflater().inflate(R.layout.popup_info_kehadiran, null);
@@ -204,12 +204,15 @@ public class TampilanScannerActivity extends AppCompatActivity {
                                 JSONObject object =new JSONObject(qrcodes.valueAt(0).displayValue);
                                 id_anggota = object.getString("id_anggota");
                                 nama = object.getString("nama");
+                                DateFormat df = new SimpleDateFormat("HH:mm");
+                                String currentTime = df.format(Calendar.getInstance().getTime());
+                                String tempTime = "09:07";
 
                                 textViewResult.setText(nama);
 
                                 //Post API
                                 apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-                                Call<ArrayList<Item>> call = apiInterface.postHadir(id_anggota);
+                                Call<ArrayList<Item>> call = apiInterface.postHadir(id_anggota, tempTime);
 
                                 call.enqueue(new Callback<ArrayList<Item>>() {
                                     @Override
