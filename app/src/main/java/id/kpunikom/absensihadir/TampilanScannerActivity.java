@@ -56,6 +56,8 @@ public class TampilanScannerActivity extends AppCompatActivity {
     SurfaceView cameraPreview;
     TextView txtResult;
     TextView txtDate;
+    TextView txtSudahAbsen;
+    TextView txtBelumAbsen;
     BarcodeDetector barcodeDetector;
     CameraSource cameraSource;
     Boolean codeScanned = false;
@@ -130,10 +132,14 @@ public class TampilanScannerActivity extends AppCompatActivity {
 
         cameraPreview = findViewById(R.id.cameraPreview);
         txtResult = findViewById(R.id.txtResult);
+        txtSudahAbsen = findViewById(R.id.txt_value_sudahabsen);
+        txtBelumAbsen = findViewById(R.id.txt_value_belumabsen);
 
         myDB = new DatabaseHelper(this);
         data = myDB.getListContents();
 
+        txtSudahAbsen.setText(Integer.toString(HadirFragment.jumlahSudahAbsen));
+        txtBelumAbsen.setText(Integer.toString(BelumHadirFragment.jumlahBelumAbsen));
 
         //myDB.deleteRecord();
 
@@ -192,7 +198,7 @@ public class TampilanScannerActivity extends AppCompatActivity {
                             MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), uri);
                             mediaPlayer.start();
 
-                            txtResult.setText(qrcodes.valueAt(0).displayValue);
+                            //txtResult.setText(qrcodes.valueAt(0).displayValue);
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(TampilanScannerActivity.this);
                             View view = getLayoutInflater().inflate(R.layout.popup_info_kehadiran, null);
@@ -204,12 +210,15 @@ public class TampilanScannerActivity extends AppCompatActivity {
                                 JSONObject object =new JSONObject(qrcodes.valueAt(0).displayValue);
                                 id_anggota = object.getString("id_anggota");
                                 nama = object.getString("nama");
+                                DateFormat df = new SimpleDateFormat("HH:mm");
+                                String currentTime = df.format(Calendar.getInstance().getTime());
+                                String tempTime = "09:07";
 
                                 textViewResult.setText(nama);
 
                                 //Post API
                                 apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-                                Call<ArrayList<Item>> call = apiInterface.postHadir(id_anggota);
+                                Call<ArrayList<Item>> call = apiInterface.postHadir(id_anggota, tempTime);
 
                                 call.enqueue(new Callback<ArrayList<Item>>() {
                                     @Override
@@ -247,8 +256,22 @@ public class TampilanScannerActivity extends AppCompatActivity {
             }
         });
     }
-    //GETCURENTDATE
 
+    @Override
+    protected void onResumeFragments() {
+        super.onResumeFragments();
+        txtSudahAbsen.setText(Integer.toString(HadirFragment.jumlahSudahAbsen));
+        txtBelumAbsen.setText(Integer.toString(BelumHadirFragment.jumlahBelumAbsen));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        txtSudahAbsen.setText(Integer.toString(HadirFragment.jumlahSudahAbsen));
+        txtBelumAbsen.setText(Integer.toString(BelumHadirFragment.jumlahBelumAbsen));
+    }
+
+    //GETCURENTDATE
     public String getCurrentDate() {
         final Calendar c = Calendar.getInstance();
         int year,month,day;

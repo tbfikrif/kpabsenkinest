@@ -22,5 +22,5 @@ ApiInterface {
 
     @FormUrlEncoded
     @POST("postHadir.php")
-    Call<ArrayList<Item>> postHadir(@Field("id_anggota") String id_anggota);
+    Call<ArrayList<Item>> postHadir(@Field("id_anggota") String id_anggota, @Field("jam_masuk") String jam_masuk);
 }
