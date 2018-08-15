@@ -56,6 +56,8 @@ public class TampilanScannerActivity extends AppCompatActivity {
     SurfaceView cameraPreview;
     TextView txtResult;
     TextView txtDate;
+    TextView txtSudahAbsen;
+    TextView txtBelumAbsen;
     BarcodeDetector barcodeDetector;
     CameraSource cameraSource;
     Boolean codeScanned = false;
@@ -130,10 +132,14 @@ public class TampilanScannerActivity extends AppCompatActivity {
 
         cameraPreview = findViewById(R.id.cameraPreview);
         txtResult = findViewById(R.id.txtResult);
+        txtSudahAbsen = findViewById(R.id.txt_value_sudahabsen);
+        txtBelumAbsen = findViewById(R.id.txt_value_belumabsen);
 
         myDB = new DatabaseHelper(this);
         data = myDB.getListContents();
 
+        txtSudahAbsen.setText(Integer.toString(HadirFragment.jumlahSudahAbsen));
+        txtBelumAbsen.setText(Integer.toString(BelumHadirFragment.jumlahBelumAbsen));
 
         //myDB.deleteRecord();
 
@@ -250,8 +256,22 @@ public class TampilanScannerActivity extends AppCompatActivity {
             }
         });
     }
-    //GETCURENTDATE
 
+    @Override
+    protected void onResumeFragments() {
+        super.onResumeFragments();
+        txtSudahAbsen.setText(Integer.toString(HadirFragment.jumlahSudahAbsen));
+        txtBelumAbsen.setText(Integer.toString(BelumHadirFragment.jumlahBelumAbsen));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        txtSudahAbsen.setText(Integer.toString(HadirFragment.jumlahSudahAbsen));
+        txtBelumAbsen.setText(Integer.toString(BelumHadirFragment.jumlahBelumAbsen));
+    }
+
+    //GETCURENTDATE
     public String getCurrentDate() {
         final Calendar c = Calendar.getInstance();
         int year,month,day;

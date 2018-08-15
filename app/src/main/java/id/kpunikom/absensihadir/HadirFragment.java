@@ -39,6 +39,8 @@ public class HadirFragment extends Fragment {
     //Retrofit
     private ApiInterface apiInterface;
 
+    public static int jumlahSudahAbsen = 0;
+
     public HadirFragment() {
         // Required empty public constructor
     }
@@ -69,11 +71,12 @@ public class HadirFragment extends Fragment {
                 itemList = response.body();
                 itemArrayAdapter = new ItemArrayAdapter(R.layout.list_item, itemList);
                 recyclerView.setAdapter(itemArrayAdapter);
+                jumlahSudahAbsen = itemArrayAdapter.getItemCount();
             }
 
             @Override
             public void onFailure(Call<ArrayList<Item>> call, Throwable t) {
-
+                Toast.makeText(getContext(), "Tidak dapat terhubung ke server.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -100,7 +103,7 @@ public class HadirFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ArrayList<Item>> call, Throwable t) {
-
+                Toast.makeText(getContext(), "Tidak dapat terhubung ke server.", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -115,10 +118,4 @@ public class HadirFragment extends Fragment {
             }
         }
     }
-
-    public void UpdateDataRecycler(){
-        itemList.clear();
-        itemArrayAdapter.notifyDataSetChanged();
-    }
-
 }
