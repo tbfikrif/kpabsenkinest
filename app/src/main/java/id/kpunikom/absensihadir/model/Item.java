@@ -4,11 +4,13 @@ public class Item {
     private String nama;
     private String email;
     private String jam_masuk;
+    private String foto;
 
-    public Item(String nama, String email, String jam_masuk) {
+    public Item(String nama, String email, String jam_masuk, String foto) {
         this.nama = nama;
         this.email = email;
         this.jam_masuk = jam_masuk;
+        this.foto = foto;
     }
 
     public String getNama() {
@@ -33,5 +35,13 @@ public class Item {
 
     public void setJam_masuk(String jam_masuk) {
         this.jam_masuk = jam_masuk;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }

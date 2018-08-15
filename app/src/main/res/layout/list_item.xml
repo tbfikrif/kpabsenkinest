@@ -23,8 +23,9 @@
                 android:textSize="20sp"
                 android:text="20"/>
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/foto_profil"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:src="@mipmap/ic_launcher"/>
             <LinearLayout
                 android:layout_width="wrap_content"

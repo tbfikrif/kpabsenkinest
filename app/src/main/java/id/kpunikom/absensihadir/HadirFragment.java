@@ -87,7 +87,7 @@ public class HadirFragment extends Fragment {
             Toast.makeText(getContext(), "Belum ada yang Absen.", Toast.LENGTH_SHORT).show();
         } else {
             while (data.moveToNext()){
-                itemList.add(new Item(data.getString(1), data.getString(2), data.getString(3)));
+                //itemList.add(new Item(data.getString(1), data.getString(2), data.getString(3)));
                 recyclerView.setAdapter(itemArrayAdapter);
             }
         }
