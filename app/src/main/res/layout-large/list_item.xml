@@ -23,7 +23,7 @@
                 android:gravity="center"
                 android:textSize="20sp"
                 android:text="20"/>
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/foto_profil"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
