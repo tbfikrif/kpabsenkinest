@@ -144,7 +144,7 @@ public class TampilanScannerActivity extends AppCompatActivity {
         //myDB.deleteRecord();
 
         barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
-        cameraSource = new CameraSource.Builder(this, barcodeDetector).setRequestedPreviewSize(480, 680).build();
+        cameraSource = new CameraSource.Builder(this, barcodeDetector).setAutoFocusEnabled(true).setRequestedPreviewSize(480, 680).build();
 
         //Add Event
         cameraPreview.getHolder().addCallback(new SurfaceHolder.Callback() {
