@@ -27,7 +27,6 @@
                 android:id="@+id/foto_profil"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:background="@drawable/circle_frame"
                 android:src="@mipmap/ic_launcher"
                 android:layout_marginLeft="6dp"
 
@@ -74,13 +73,13 @@
                         android:textColor="@color/white"
                         android:text="@string/jam_masuk"
                         android:layout_marginEnd="6dp"
-                        android:textSize="15sp"/>
+                        android:textSize="16sp"/>
                     <TextView
                         android:id="@+id/jam_masuk"
-                        android:text="09:15"
+                        android:text="00:00"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:textSize="12sp"
                         android:textStyle="bold"
                         android:textColor="@color/white"
                         android:layout_below="@+id/label_jam"
