@@ -26,16 +26,27 @@
                 android:id="@+id/foto_profil"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginLeft="4dp"
+                />
+            <ImageView
+                android:id="@+id/circleframe"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/circle_frame"
+
+                />
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="4dp"
+                android:layout_gravity="center_vertical">
                 <TextView
                     android:id="@+id/nama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
+                    android:textSize="12sp"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:text="Nama"
@@ -52,29 +63,37 @@
             <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/label_jam"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:layout_alignParentRight="true"
-                android:text="@string/jam_masuk"
-                android:layout_marginEnd="6dp"
-                android:textSize="15sp"
-                android:gravity="start"/>
-            <TextView
-                android:id="@+id/jam_masuk"
-                android:text="09:15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/label_jam"
-                android:layout_marginEnd="6dp"
-                android:gravity="start"/>
+            android:orientation="vertical"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    >
+                    <TextView
+                        android:id="@+id/label_jam"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="@string/jam_masuk"
+                        android:layout_marginEnd="6dp"
+                        android:textSize="10sp"
+                        />
+                    <TextView
+                        android:id="@+id/jam_masuk"
+                        android:text="09:15"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:layout_below="@+id/label_jam"
+                        android:layout_marginEnd="6dp"
+                        android:textAlignment="textEnd"
+                        />
+                </LinearLayout>
         </RelativeLayout>
         </LinearLayout>
 
