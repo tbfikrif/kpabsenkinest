@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -255,20 +256,47 @@ public class TampilanScannerActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+        try {
+            Handler handler = new Handler();
+            handler.removeCallbacks(setJumlah);
+            handler.postDelayed(setJumlah,1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+    public Runnable setJumlah = new Runnable() {
+        @Override
+        public void run() {
+            txtSudahAbsen.setText(Integer.toString(HadirFragment.jumlahSudahAbsen));
+            txtBelumAbsen.setText(Integer.toString(BelumHadirFragment.jumlahBelumAbsen));
+        }
+    };
 
     @Override
     protected void onResumeFragments() {
         super.onResumeFragments();
-        txtSudahAbsen.setText(Integer.toString(HadirFragment.jumlahSudahAbsen));
-        txtBelumAbsen.setText(Integer.toString(BelumHadirFragment.jumlahBelumAbsen));
+        try {
+            Handler handler = new Handler();
+            handler.removeCallbacks(setJumlah);
+            handler.postDelayed(setJumlah,1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        txtSudahAbsen.setText(Integer.toString(HadirFragment.jumlahSudahAbsen));
-        txtBelumAbsen.setText(Integer.toString(BelumHadirFragment.jumlahBelumAbsen));
+        try {
+            Handler handler = new Handler();
+            handler.removeCallbacks(setJumlah);
+            handler.postDelayed(setJumlah,1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //GETCURENTDATE

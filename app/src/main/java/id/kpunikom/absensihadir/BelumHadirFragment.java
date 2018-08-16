@@ -39,7 +39,7 @@ public class BelumHadirFragment extends Fragment {
     //Retrofit
     private ApiInterface apiInterface;
 
-    public static int jumlahBelumAbsen = 0;
+    public static int jumlahBelumAbsen = 24;
 
     public BelumHadirFragment() {
         // Required empty public constructor
