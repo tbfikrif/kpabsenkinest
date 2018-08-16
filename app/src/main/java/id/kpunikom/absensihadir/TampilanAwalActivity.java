@@ -20,6 +20,7 @@ public class TampilanAwalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tampilan_awal);
 
         Button btnScanner = findViewById(R.id.btn_scanner);
+        Button btnPengaturan = findViewById(R.id.btn_setting);
 
         btnScanner.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,6 +28,15 @@ public class TampilanAwalActivity extends AppCompatActivity {
                 Intent TampilanScannerActivity = new
                         Intent(TampilanAwalActivity.this, TampilanScannerActivity.class);
                 startActivity(TampilanScannerActivity);
+            }
+        });
+
+        btnPengaturan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent TampilanPengaturanActivity = new
+                        Intent(TampilanAwalActivity.this, TampilanPengaturanActivity.class);
+                startActivity(TampilanPengaturanActivity);
             }
         });
 
