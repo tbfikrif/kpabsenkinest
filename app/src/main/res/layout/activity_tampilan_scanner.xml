@@ -14,13 +14,15 @@
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/darkblue">
+            android:background="@color/darkblue"
+            >
 
             <android.support.v7.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:title="Scanner">
+                app:title="Scanner"
+                android:id="@+id/toolbar">
 
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
@@ -50,7 +52,6 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/main_nav"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
