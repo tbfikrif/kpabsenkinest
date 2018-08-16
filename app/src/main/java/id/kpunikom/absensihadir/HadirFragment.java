@@ -76,7 +76,7 @@ public class HadirFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ArrayList<Item>> call, Throwable t) {
-                Toast.makeText(getContext(), "Tidak dapat terhubung ke server.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Tidak dapat terhubung ke server.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -103,7 +103,7 @@ public class HadirFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ArrayList<Item>> call, Throwable t) {
-                Toast.makeText(getContext(), "Tidak dapat terhubung ke server.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Tidak dapat terhubung ke server.", Toast.LENGTH_SHORT).show();
             }
         });
     }
