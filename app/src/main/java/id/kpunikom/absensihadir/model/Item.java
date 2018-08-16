@@ -5,12 +5,14 @@ public class Item {
     private String email;
     private String jam_masuk;
     private String foto;
+    private String status_id;
 
-    public Item(String nama, String email, String jam_masuk, String foto) {
+    public Item(String nama, String email, String jam_masuk, String foto, String status_id) {
         this.nama = nama;
         this.email = email;
         this.jam_masuk = jam_masuk;
         this.foto = foto;
+        this.status_id = status_id;
     }
 
     public String getNama() {
@@ -43,5 +45,13 @@ public class Item {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public String getStatus_id() {
+        return status_id;
+    }
+
+    public void setStatus_id(String status_id) {
+        this.status_id = status_id;
     }
 }

@@ -3,6 +3,8 @@ package id.kpunikom.absensihadir;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -57,6 +59,34 @@ public class ItemArrayAdapter extends RecyclerView.Adapter<ItemArrayAdapter.View
         int temp = listPosition + 1;
 
         noUrut.setText(Integer.toString(temp));
+        switch (itemList.get(listPosition).getStatus_id()) {
+            case "1":
+                noUrut.setBackgroundColor(Color.parseColor("#00c0ef"));
+                break;
+            case "2":
+                noUrut.setBackgroundColor(Color.parseColor("#3c8dbc"));
+                break;
+            case "3":
+                noUrut.setBackgroundColor(Color.parseColor("#dd4b39"));
+                break;
+            case "4":
+                noUrut.setBackgroundColor(Color.parseColor("#dd4b39"));
+                break;
+            case "5":
+                noUrut.setBackgroundColor(Color.parseColor("#00a65a"));
+                break;
+            case "6":
+                noUrut.setBackgroundColor(Color.BLACK);
+                break;
+            case "7":
+                noUrut.setBackgroundColor(Color.WHITE);
+                noUrut.setTextColor(Color.BLACK);
+                break;
+            default:
+                noUrut.setBackgroundColor(Color.LTGRAY);
+                break;
+        }
+
         nama.setText(itemList.get(listPosition).getNama());
         email.setText(itemList.get(listPosition).getEmail());
         jam_masuk.setText(itemList.get(listPosition).getJam_masuk());
