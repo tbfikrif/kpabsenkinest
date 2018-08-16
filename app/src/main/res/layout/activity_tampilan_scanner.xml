@@ -77,6 +77,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
+                    android:id="@+id/txtResult"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    android:text="@string/result_text_default"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:layout_gravity="center_horizontal"/>
+                <TextView
                     android:id="@+id/txtKeterangan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

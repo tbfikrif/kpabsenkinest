@@ -90,7 +90,11 @@ public class ItemArrayAdapter extends RecyclerView.Adapter<ItemArrayAdapter.View
         nama.setText(itemList.get(listPosition).getNama());
         email.setText(itemList.get(listPosition).getEmail());
         jam_masuk.setText(itemList.get(listPosition).getJam_masuk());
-        new GetImageFromURL(foto).execute("http://192.168.1.32/kakatu/dist/fotoprofile/"+itemList.get(listPosition).getFoto());
+        String fotoURL = itemList.get(listPosition).getFoto();
+        if (!fotoURL.contains(".jpg") && !fotoURL.contains(".png")){
+            fotoURL = "no-profile.jpg";
+        }
+        new GetImageFromURL(foto).execute("http://192.168.1.32/kakatu/dist/fotoprofile/"+fotoURL);
     }
 
     // Static inner class to initialize the views of rows
