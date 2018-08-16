@@ -52,14 +52,14 @@
         app:layout_constraintBottom_toTopOf="@+id/main_nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="56dp">
 
         <TextView
             android:id="@+id/txtResult"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="70dp"
             android:text="@string/result_text_default"
             android:textColor="@color/white"
             android:textSize="16sp" />
@@ -230,7 +230,7 @@
                                 android:id="@+id/txt_jumlahhadir"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Jumlah Hadir"
+                                android:text="Sudah Absen"
                                 android:textColor="@color/white"
                                 android:textSize="18sp"
                                 android:layout_gravity="center_horizontal"/>
