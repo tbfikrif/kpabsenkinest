@@ -52,17 +52,10 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/main_nav"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="56dp">
 
-        <TextView
-            android:id="@+id/txtResult"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="56dp"
-            android:text="@string/result_text_default"
-            android:textColor="@color/white"
-            android:textSize="8sp" />
+
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -119,7 +112,7 @@
                             android:layout_toRightOf="@+id/txtHadir"
                             android:layout_marginLeft="5dp"
                             android:padding="2dp"
-                            android:text="Hadir"
+                            android:text="Telat"
                             android:textAlignment="center"
                             android:textColor="@color/white"
                             android:textSize="8sp" />
@@ -232,7 +225,7 @@
                             android:id="@+id/txt_jumlahhadir"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Jumlah Hadir"
+                            android:text="Sudah Absen"
                             android:textColor="@color/white"
                             android:textSize="12sp"
                             android:layout_gravity="center_horizontal"/>

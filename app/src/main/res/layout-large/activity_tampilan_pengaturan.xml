@@ -12,16 +12,7 @@
         android:layout_height="56dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        app:titleTextColor="@color/white"
         android:theme="@style/AppTheme"
         app:title="Pengaturan"/>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="56dp"
-
-        >
-
-    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
